@@ -1495,7 +1495,6 @@ button.pack()
 window.mainloop()
 '''
 
-
 ''' listbox
 from tkinter import *
 window = Tk()
@@ -1753,6 +1752,8 @@ window.bind("<Motion>", doSomething) # Mouse motion event
 window.mainloop()
 '''
 
+
+'''
 from tkinter import * 
 from time import *
 
@@ -1769,3 +1770,29 @@ time_label.pack()
 
 update()
 window.mainloop()
+
+# --- Digital Whiteboard ---
+from tkinter import *
+
+def clear_canvas():
+    canvas.delete("all")
+
+def paint(event):
+    x1, y1 = (event.x - 2), (event.y - 2)
+    x2, y2 = (event.x + 2), (event.y + 2)
+    canvas.create_oval(x1, y1, x2, y2, fill="black", outline="black")
+
+whiteboard_window = Tk()
+whiteboard_window.title("Digital Whiteboard")
+whiteboard_window.geometry("800x600")
+
+canvas = Canvas(whiteboard_window, bg="white", width=700, height=500)
+canvas.pack(pady=20)
+canvas.bind("<B1-Motion>", paint)
+
+clear_btn = Button(whiteboard_window, text="Clear Board", command=clear_canvas, font="Arial 14")
+clear_btn.pack()
+
+whiteboard_window.mainloop()
+# --- End Digital Whiteboard ---
+'''
